@@ -1,0 +1,3 @@
+# discrete_math
+Mathematics library in c++
+In  progress ...
