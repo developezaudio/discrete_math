@@ -1,11 +1,12 @@
+#pragma once
 #include "DM_Calc.h"
 #include <cmath>
 #include <iostream>
 
 
-class DM_Deriv : DM_Calc{
+class DM_Deriv : public DM_Calc{
     public:
-        DM_Deriv() : DM_Calc()
+        DM_Deriv()
         {};
         ~DM_Deriv() {};
         double instant_rate(double f(double),double x, int digits)
@@ -17,7 +18,7 @@ class DM_Deriv : DM_Calc{
             {
                 dx = dx/10.0;
                 double next_approx = average_rate(f,x-dx,x+dx);
-                if(abs(next_approx - approx))
+                if(abs(next_approx - approx) < tolerance)
                 {
                     return next_approx;
                 } else

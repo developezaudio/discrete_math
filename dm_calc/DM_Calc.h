@@ -1,16 +1,20 @@
+#pragma once
+
 class DM_Calc
 {
 private:
     /* data */
 public:
-    DM_Calc(/* args */);
+    DM_Calc();
     ~DM_Calc();
     double average_rate(double f(double), double x1, double x2);
+    double average_rate_array(double* f, int x1, int x2);
+    double small_dx_change(double f(double), double x, double dx);
     //Returns a function of the secant line
     auto secant_line(double f(double), double x1, double x2);
 };
 
-DM_Calc::DM_Calc(/* args */)
+DM_Calc::DM_Calc()
 {
 }
 
@@ -21,6 +25,11 @@ DM_Calc::~DM_Calc()
 double DM_Calc::average_rate(double f(double), double x1, double x2)
 {
     return (f(x2) - f(x1))/(x2-x1);
+}
+
+double DM_Calc::average_rate_array(double* f, int x1, int x2)
+{
+    return (f[x2] - f[x1])/(double)(x2-x1);
 }
 
 auto DM_Calc::secant_line(double f(double), double x1, double x2)
@@ -35,4 +44,9 @@ auto DM_Calc::secant_line(double f(double), double x1, double x2)
     };
 
     return secant;
+}
+
+double DM_Calc::small_dx_change(double f(double), double x, double dx)
+{
+    return f(x) * dx;
 }
